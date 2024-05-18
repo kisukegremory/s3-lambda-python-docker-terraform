@@ -12,7 +12,7 @@ def lambda_handler(event, context):
 
     return {
         'statusCode':200,
-        'lastModified': s3_obj['LastModified']
+        'lastModified': str(s3_obj['LastModified'])
     }
 
 if __name__ == "__main__":
