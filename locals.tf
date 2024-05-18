@@ -8,4 +8,6 @@ locals {
     managedBy = "terraform"
     project   = local.project_name
   }
+
+  function_name = "lambda_handler"
 }

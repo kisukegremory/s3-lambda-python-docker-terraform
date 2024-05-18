@@ -20,3 +20,10 @@ Roadmap:
 - Adicionar o trigger de um novo arquivo do s3 no diretório
 - Mudar o lambda para consumir baseado em um evento do s3
 - E voi lá
+
+
+
+Refs:
+- https://medium.com/@haissamhammoudfawaz/create-a-aws-lambda-function-using-terraform-and-python-4e0c2816753a
+- https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy
+- https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment
