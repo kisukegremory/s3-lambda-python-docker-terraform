@@ -25,3 +25,11 @@ module "lambda_layered" {
   layers      = [module.httpx_layer.httpx_layer_arn]
   role_arn = aws_iam_role.this.arn
 }
+
+
+module "lambda_vanilla" {
+  source = "./modules/lambda_vanilla"
+  source_file = "${local.code_source}/lambda_vanilla/main.py"
+  output_path = "${local.artifact_source}/${local.project_name}-vanilla.zip"
+  role_arn = aws_iam_role.this.arn
+}
