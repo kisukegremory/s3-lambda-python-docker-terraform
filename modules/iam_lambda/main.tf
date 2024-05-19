@@ -30,12 +30,12 @@ data "aws_iam_policy_document" "this" {
     actions = [
       "s3:GetObject",
     ]
-    resources = ["${aws_s3_bucket.this.arn}/*"]
+    resources = ["${var.s3_bucket_arn}/*"]
   }
 }
 
 resource "aws_iam_policy" "this" {
-  name        = "${local.project_name}-policy"
+  name        = "${var.project_name}-policy"
   description = "Policy to allow S3 and Cloudwatch to a specific resource"
   policy      = data.aws_iam_policy_document.this.json
 }
@@ -43,11 +43,11 @@ resource "aws_iam_policy" "this" {
 
 resource "aws_iam_role" "this" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
-  name               = "${local.project_name}-role"
+  name               = "${var.project_name}-role"
 }
 
 resource "aws_iam_policy_attachment" "this" {
-  name = "${local.project_name}-role-attachment"
+  name = "${var.project_name}-role-attachment"
   roles = [
     aws_iam_role.this.name,
   ]
