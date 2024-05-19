@@ -1,7 +1,7 @@
 data "archive_file" "lambda_vanilla" {
   type        = "zip"
-  source_file = "lambda_vanilla/main.py"
-  output_path = "${local.project_name}-vanilla.zip"
+  source_file = "${local.code_source}/lambda_vanilla/main.py"
+  output_path = "${local.artifact_source}/${local.project_name}-vanilla.zip"
 }
 
 resource "aws_lambda_function" "vanilla" {
@@ -17,7 +17,7 @@ resource "aws_lambda_function" "vanilla" {
 data "archive_file" "lambda_layer" {
   type        = "zip"
   source_dir  = "./httpx-layer"
-  output_path = "${local.project_name}-httpx-layer2.zip"
+  output_path = "${local.artifact_source}/${local.project_name}-httpx-layer.zip"
 }
 
 resource "aws_lambda_layer_version" "this" {
@@ -32,8 +32,8 @@ resource "aws_lambda_layer_version" "this" {
 
 data "archive_file" "lambda_layered" {
   type        = "zip"
-  source_file = "lambda_layered/main.py"
-  output_path = "${local.project_name}-layered.zip"
+  source_file = "${local.code_source}/lambda_layered/main.py"
+  output_path = "${local.artifact_source}/${local.project_name}-layered.zip"
 }
 
 resource "aws_lambda_function" "layered" {
