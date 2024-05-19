@@ -22,6 +22,8 @@ Roadmap:
 - E voi lá
 
 
+How to export a python lib to be used as a custom layer:
+pip install httpx -t httpx-layer/python/lib/python3.10/site-packages
 
 Refs:
 - https://medium.com/@haissamhammoudfawaz/create-a-aws-lambda-function-using-terraform-and-python-4e0c2816753a

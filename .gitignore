@@ -35,3 +35,4 @@ terraform.rc
 venv
 env
 *.zip
+python
