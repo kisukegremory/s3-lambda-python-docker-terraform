@@ -48,6 +48,33 @@ module "iam_lambda" {
 # }
 
 module "ecr" {
-  source = "./modules/ecr_repo"
+  source    = "./modules/ecr_repo"
   repo_name = "lambda_etl_processor"
 }
+
+module "lambda_container" {
+  source = "./modules/lambda_container"
+  role_arn = module.iam_lambda.role_arn
+  image_uri = module.ecr.image_uri
+}
+
+resource "aws_lambda_permission" "allow_bucket" {
+  statement_id  = "AllowExecutionFromS3Bucket"
+  action        = "lambda:InvokeFunction"
+  function_name = module.lambda_container.lambda_arn
+  principal     = "s3.amazonaws.com"
+  source_arn    = module.s3_input_data.bucket_arn
+}
+
+resource "aws_s3_bucket_notification" "this" {
+  bucket = module.s3_input_data.bucket_id
+  lambda_function {
+    lambda_function_arn = module.lambda_container.lambda_arn
+    events = [ "s3:ObjectCreated:*" ]
+    filter_suffix = ".csv"
+  }
+
+  depends_on = [ aws_lambda_permission.allow_bucket ]
+}
+
+
