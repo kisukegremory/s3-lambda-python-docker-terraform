@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "this" {
     effect = "Allow"
     sid    = "S3id"
     actions = [
-      "s3:GetObject",
+      "s3:*Object",
     ]
     resources = ["${var.s3_bucket_arn}/*"]
   }

@@ -29,3 +29,8 @@ Refs:
 - https://medium.com/@haissamhammoudfawaz/create-a-aws-lambda-function-using-terraform-and-python-4e0c2816753a
 - https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy
 - https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment
+- https://docs.aws.amazon.com/pt_br/lambda/latest/dg/python-image.html
+
+docker build  -t lambda-on-container:test .
+docker run -p 9000:8080 lambda-on-container:test
+curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
