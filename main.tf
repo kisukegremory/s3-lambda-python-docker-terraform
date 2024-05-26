@@ -39,14 +39,6 @@ module "iam_lambda" {
 #   role_arn    = module.iam_lambda.role_arn
 # }
 
-
-# module "lambda_vanilla" {
-#   source      = "./modules/lambda_vanilla"
-#   source_file = "${local.code_source}/lambda_vanilla/main.py"
-#   output_path = "${local.artifact_source}/${local.project_name}-vanilla.zip"
-#   role_arn    = module.iam_lambda.role_arn
-# }
-
 module "ecr" {
   source    = "./modules/ecr_repo"
   repo_name = "lambda_etl_processor"
