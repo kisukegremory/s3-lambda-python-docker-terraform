@@ -24,21 +24,6 @@ module "iam_lambda" {
   s3_bucket_arn = module.s3_input_data.bucket_arn
 }
 
-# module "httpx_layer" {
-#   source      = "./modules/httpx_layer"
-#   output_path = "${local.artifact_source}/${local.project_name}-httpx-layer.zip"
-#   source_dir  = "./httpx-layer"
-# }
-
-
-# module "lambda_layered" {
-#   source      = "./modules/lambda_layered"
-#   source_file = "${local.code_source}/lambda_layered/main.py"
-#   output_path = "${local.artifact_source}/${local.project_name}-layered.zip"
-#   layers      = [module.httpx_layer.httpx_layer_arn]
-#   role_arn    = module.iam_lambda.role_arn
-# }
-
 module "ecr" {
   source    = "./modules/ecr_repo"
   repo_name = "lambda_etl_processor"
